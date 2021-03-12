@@ -2,3 +2,196 @@
 
 @import url(../blocks/page/page.css);
 
+.page__container {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.page__symbols {
+  display: none;
+}
+
+.header {
+  margin-top: 45px;
+  margin-bottom: 40px;
+
+  min-height: 74px;
+
+  border-bottom: 1px solid #545454;
+}
+
+.header__logo {
+  display: block;
+
+  width: 142px;
+  height: 33px;
+
+  fill: white;
+  transition: fill 0.15s ease-in;
+}
+
+.header__logo:hover {
+  fill: #545454;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 120px 1fr 150px;
+  gap: 30px;
+
+  margin-bottom: 50px;
+}
+
+.profile__avatar {
+  width: 120px;
+  height: 120px;
+
+  border-radius: 50%;
+}
+
+.profile__info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile__name {
+  margin-top: 0;
+  margin-bottom: 16px;
+
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.14;
+}
+
+.profile__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  border: 1px solid white;
+  cursor: pointer;
+  transition: opacity 0.15s ease-in;
+}
+
+.profile__button:hover {
+  opacity: 0.6;
+}
+
+.profile__button_type_edit {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+
+  width: 24px;
+  height: 24px;
+}
+
+.profile__button_type_add {
+  align-self: center;
+
+  width: 150px;
+  height: 50px;
+}
+
+.profile__label {
+  margin: 0;
+
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+}
+
+.icon {
+  fill: white;
+}
+
+.icon_type_edit {
+  width: 10px;
+  height: 10px;
+}
+
+.icon_type_add {
+  width: 22px;
+  height: 22px;
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 20px;
+  column-gap: 17px;
+
+  margin-bottom: 66px;
+}
+
+.photo {
+  overflow: hidden;
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+}
+
+.photo__image-container {
+  position: relative;
+
+  padding-bottom: 100%;
+  height: 0;
+
+  background-color: #545454
+}
+
+.photo__image {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo__description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 25px 15px 31px 21px;
+}
+
+.photo__name {
+  margin: 0;
+
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.21;
+}
+
+.photo__like-button {
+  width: 20px;
+  height: 30px;
+
+  fill: black;
+  cursor: pointer;
+  transition: opacity 0.15s ease-in;
+}
+
+.photo__like-button:hover {
+  opacity: 0.5;
+}
+
+.footer {
+  margin-bottom: 60px;
+}
+
+.footer__copyright {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  color: #545454;
+}
