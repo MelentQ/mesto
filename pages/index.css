@@ -193,6 +193,7 @@
   margin-top: 0;
   margin-right: 18px;
   margin-bottom: 0;
+  max-width: calc(100% - 24px - 18px);
 
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -216,6 +217,11 @@
 
 .profile__button:hover {
   opacity: 0.6;
+}
+
+.profile__button_type_edit {
+  width: 24px;
+  height: 24px;
 }
 
 .profile__button_type_add {
@@ -242,7 +248,6 @@
 }
 
 .icon_type_edit {
-  padding: 6px;
   width: 10px;
   height: 10px;
 }
@@ -300,6 +305,7 @@
   margin-top: 0;
   margin-right: 21px;
   margin-bottom: 0;
+  max-width: calc(100% - 21px - 20px);
 
   text-overflow: ellipsis;
   white-space: nowrap;

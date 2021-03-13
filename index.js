@@ -9,6 +9,8 @@ let newProfileName = document.querySelector('.input__text_type_name');
 let newProfileActivity = document.querySelector('.input__text_type_activity');
 
 function UnhidePopup() {
+  newProfileName.value = currentProfileName.textContent;
+  newProfileActivity.value = currentProfileActivity.textContent;
   popup.classList.add('popup_show')
 }
 
