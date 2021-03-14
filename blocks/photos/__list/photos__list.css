@@ -9,3 +9,15 @@
 
   list-style: none;
 }
+
+@media screen and (max-width: 767px) {
+  .photos__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 539px) {
+  .photos__list {
+    grid-template-columns: 1fr;
+  }
+}

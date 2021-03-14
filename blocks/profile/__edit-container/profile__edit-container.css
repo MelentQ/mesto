@@ -2,3 +2,15 @@
   display: flex;
   align-items: center;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__edit-container {
+    transform: translateX(21px);
+  }
+}
+
+@media screen and (max-width: 413px) {
+  .profile__edit-container {
+    transform: translateX(14px);
+  }
+}
