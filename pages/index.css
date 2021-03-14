@@ -1,4 +1,4 @@
-@import url(../vendor/normalize.min.css);
+@import url(../vendor/normalize.css);
 @import url(../vendor/fonts/fonts.css);
 
 @import url(../blocks/theme/_color/theme_color_dark.css);
