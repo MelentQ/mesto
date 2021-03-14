@@ -51,4 +51,8 @@ function SwitchTheme() {
 }
 
 themeSwitcher.addEventListener('click', SwitchTheme)
-themeSwitcherBtn.addEventListener('click', SwitchTheme)
+themeSwitcherBtn.addEventListener('click', function(e) {
+  e.preventDefault()
+  e.stopImmediatePropagation()
+  SwitchTheme()
+})
