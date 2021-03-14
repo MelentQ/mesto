@@ -6,9 +6,12 @@
 
   fill: var(--page-coloron-bg);
   transition: fill 0.15s ease-in;
+  opacity: 1;
+  transition: opacity 0.15s ease-in;
 }
 
 .header__logo:hover {
+  opacity: 0.5;
   fill: var(--page-coloron-bg-low);
 }
 
