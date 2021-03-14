@@ -1,1 +1,4 @@
 mesto.fig
+node_modules
+package-lock.json
+pages\index-no-bem.css

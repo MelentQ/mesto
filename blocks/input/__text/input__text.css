@@ -1,0 +1,21 @@
+.input__text {
+  padding: 0 0 13px 0;
+
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+
+  transition: border-bottom 0.15s ease-in;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.input__text:hover {
+  border-color: rgba(0, 0, 0, 0.8);
+  }
+
+.input__text:focus {
+  border-color: rgba(0, 0, 0, 0.8);
+  outline: none;
+}

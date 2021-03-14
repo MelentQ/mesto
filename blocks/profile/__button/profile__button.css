@@ -1,0 +1,15 @@
+.profile__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  border: 1px solid white;
+  cursor: pointer;
+  transition: opacity 0.15s ease-in;
+}
+
+.profile__button:hover {
+  opacity: 0.6;
+}

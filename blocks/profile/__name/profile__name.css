@@ -1,0 +1,13 @@
+.profile__name {
+  margin-top: 0;
+  margin-right: 18px;
+  margin-bottom: 0;
+  max-width: calc(100% - 24px - 18px);
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.14;
+}

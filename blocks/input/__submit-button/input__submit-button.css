@@ -1,0 +1,21 @@
+.input__submit-button {
+  padding: 14px 0;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  transition: opacity 0.15s ease-in;
+}
+
+.input__submit-button:hover {
+  opacity: 0.8;
+}
+
+.input__submit-button:focus {
+  opacity: 0.8;
+  outline: none;
+}
