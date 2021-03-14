@@ -1,0 +1,9 @@
+.theme_color_dark {
+  --page-color-bg: black;
+  --page-coloron-bg: white;
+  --page-coloron-bg-low: #545454;
+
+  --photo-color-bg: white;
+  --photo-coloron-bg: black;
+  --photo-coloron-bg-low: #545454;
+}

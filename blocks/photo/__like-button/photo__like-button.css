@@ -2,7 +2,7 @@
   width: 22px;
   height: 19px;
 
-  fill: black;
+  fill: var(--photo-coloron-bg);
   cursor: pointer;
   transition: opacity 0.15s ease-in;
 }

@@ -4,7 +4,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
-  color: #545454;
+  color: var(--page-coloron-bg-low);
 }
 
 @media screen and (max-width: 413px) {

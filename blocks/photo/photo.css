@@ -1,6 +1,6 @@
 .photo {
   overflow: hidden;
-  background-color: white;
+  background-color: var(--photo-color-bg);
   border-radius: 10px;
-  color: black;
+  color: var(--photo-coloron-bg);
 }

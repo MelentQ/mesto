@@ -5,7 +5,7 @@
 
   box-sizing: border-box;
 
-  border: 1px solid white;
+  border: 1px solid var(--page-coloron-bg);
   cursor: pointer;
   transition: opacity 0.15s ease-in;
 }

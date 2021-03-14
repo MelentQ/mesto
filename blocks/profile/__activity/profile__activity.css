@@ -1,6 +1,7 @@
 .profile__activity {
   margin-top: 8px;
   margin-bottom: 0;
+  max-width: 100%;
 
   text-overflow: ellipsis;
   white-space: nowrap;

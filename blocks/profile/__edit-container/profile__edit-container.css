@@ -6,11 +6,13 @@
 @media screen and (max-width: 767px) {
   .profile__edit-container {
     transform: translateX(21px);
+    max-width: calc(100% - 18px - 24px);
   }
 }
 
 @media screen and (max-width: 413px) {
   .profile__edit-container {
     transform: translateX(14px);
+    max-width: calc(100% - 10px - 18px);
   }
 }
