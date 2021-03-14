@@ -50,4 +50,5 @@ function SwitchTheme() {
   themeSwitcher.classList.toggle('theme-switcher_theme-light')
 }
 
+themeSwitcher.addEventListener('click', SwitchTheme)
 themeSwitcherBtn.addEventListener('click', SwitchTheme)
