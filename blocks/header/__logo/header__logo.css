@@ -4,15 +4,12 @@
   width: 142px;
   height: 33px;
 
-  fill: var(--page-coloron-bg);
-  transition: fill 0.15s ease-in;
   opacity: 1;
   transition: opacity 0.15s ease-in;
 }
 
 .header__logo:hover {
   opacity: 0.5;
-  fill: var(--page-coloron-bg-low);
 }
 
 @media screen and (max-width: 879px) {
