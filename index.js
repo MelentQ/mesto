@@ -37,3 +37,17 @@ popupContent.addEventListener('click', function(e) {
   e.preventDefault()
   e.stopImmediatePropagation()
 })
+
+//Переключатель темы
+let page = document.querySelector('.page');
+let themeSwitcher = document.querySelector('.theme-switcher');
+let themeSwitcherBtn = document.querySelector('.theme-switcher__button');
+
+function SwitchTheme() {
+  page.classList.toggle('theme_color_dark')
+  page.classList.toggle('theme_color_light')
+  themeSwitcher.classList.toggle('theme-switcher_theme-dark')
+  themeSwitcher.classList.toggle('theme-switcher_theme-light')
+}
+
+themeSwitcherBtn.addEventListener('click', SwitchTheme)

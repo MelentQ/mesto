@@ -1,10 +1,10 @@
-.page__container {
+.section {
   max-width: 880px;
   margin: 0 auto;
 }
 
 @media screen and (max-width: 917px) {
-  .page__container {
+  .section {
     max-width: calc(100% - 19px*2);
   }
 }

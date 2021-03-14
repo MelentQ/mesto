@@ -12,6 +12,12 @@
   fill: var(--page-coloron-bg-low);
 }
 
+@media screen and (max-width: 879px) {
+  .header__logo {
+    margin-left: 19px;
+  }
+}
+
 @media screen and (max-width: 413px) {
   .header__logo {
     width: 104px;

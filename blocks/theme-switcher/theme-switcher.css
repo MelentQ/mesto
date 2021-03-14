@@ -1,0 +1,16 @@
+.theme-switcher {
+  align-self: center;
+  display: flex;
+  align-items: center;
+
+  width: 35px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--page-coloron-bg-low);
+}
+
+@media screen and (max-width: 879px) {
+  .theme-switcher {
+    margin-right: 19px;
+  }
+}
