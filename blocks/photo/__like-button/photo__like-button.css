@@ -2,6 +2,7 @@
   width: 22px;
   height: 19px;
 
+  background-image: url(../../../images/icons/like.svg);
   fill: var(--photo-coloron-bg);
   cursor: pointer;
   transition: opacity 0.15s ease-in;

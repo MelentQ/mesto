@@ -6,6 +6,7 @@
   width: 40px;
   height: 40px;
 
+  background-image: url(../../../images/icons/cross.svg);
   fill: white;
   transform: rotate(45deg);
   cursor: pointer;

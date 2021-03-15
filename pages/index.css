@@ -5,13 +5,13 @@
 @import url(../blocks/theme/_color/theme_color_light.css);
 
 @import url(../blocks/page/page.css);
-@import url(../blocks/page/__symbols/page__symbols.css);
 
 @import url(../blocks/section/section.css);
 @import url(../blocks/section/_place/section_place_header.css);
 
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/header/__logo/_theme_light/header__logo_theme_light.css);
 
 @import url(../blocks/theme-switcher/theme-switcher.css);
 @import url(../blocks/theme-switcher/__button/theme-switcher__button.css);
@@ -30,7 +30,9 @@
 
 @import url(../blocks/icon/icon.css);
 @import url(../blocks/icon/_type/icon_type_edit.css);
+@import url(../blocks/icon/_type/icon_type_edit-theme-light.css);
 @import url(../blocks/icon/_type/icon_type_add.css);
+@import url(../blocks/icon/_type/icon_type_add-theme-light.css);
 
 @import url(../blocks/photos/photos.css);
 @import url(../blocks/photos/__list/photos__list.css);
@@ -41,6 +43,9 @@
 @import url(../blocks/photo/__description/photo__description.css);
 @import url(../blocks/photo/__name/photo__name.css);
 @import url(../blocks/photo/__like-button/photo__like-button.css);
+@import url(../blocks/photo/__like-button/_theme_light/photo__like-button_theme_light.css);
+@import url(../blocks/photo/__like-button/_active/photo__like-button_active.css);
+@import url(../blocks/photo/__like-button/_active/photo__like-button_active-theme-light.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

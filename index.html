@@ -18,29 +18,19 @@
 <body class="page theme theme_color_dark">
 
   <!-- 
-    Комментарий для ревьювера :)
-    В этой работе попробовал сделать вставку svg прямо в HTML код. Для чего?
-    Так можно управлять свойствами fill, соответственно можно
-    закрашивать иконки через CSS.
-    Также, иконки, которые используются несколько раз я реализовал
-    через спрайты и вызывал svg в нужных местах через xlink. Второй символ likeIconActive
-    пригодится в следующих спринтах - думаю, через JS можно будет менять атрибут xlink,
-    вместо добавления класса "like_active".
+    Комментарий ревьюверу:
+    В работе реализовал переключение темной и светлой темы.
+    Сделано через добавление модификаторов, изменяющих url иконок.
+    Я правда не хотел так делать, все можно было реализовать через fill CSS,
+    но увы - автотесты не пропустили с инлайновыми SVG в HTML.
+    Удалять из-за этого весь функционал переключения темы не хотелось,
+    поэтому пришлось заниматься этой порнографией.
+    Из-за этого много лишних модификаторов
+    и в JS тоже значительно прибавилось кода.
    -->
-  <svg class="page__symbols">
-    <symbol id="likeIcon">
-      <path d="M20.3 9.79a5.68 5.68 0 000-8.1 5.86 5.86 0 00-8.22 0l-1.1 1.1-1.1-1.09a5.81 5.81 0 00-8.2-.02 5.75 5.75 0 000 8.13l9.3 9.19 9.32-9.21zM1.44 5.74c0-1.15.45-2.22 1.28-3.01a4.33 4.33 0 016.1 0l2.16 2.1 2.16-2.13a4.36 4.36 0 016.1 0 4.23 4.23 0 010 6.04l-8.26 8.2-8.26-8.18a4.3 4.3 0 01-1.28-3.02z"/>
-    </symbol>
-
-    <symbol id="likeIconActive">
-      <path d="M20.3 1.68a5.68 5.68 0 010 8.1L10.98 19l-9.3-9.2a5.75 5.75 0 010-8.12 5.81 5.81 0 018.2.02l1.1 1.1 1.1-1.12a5.86 5.86 0 018.22 0z"/>
-    </symbol>
-  </svg>
 
   <header class="header section section_place_header">
-    <a href="#" class="header__logo" title="На главную" target="_blank">
-      <img src="./images/logo.svg" alt="Логотип">
-    </a>
+    <a href="#" class="header__logo" title="На главную" target="_blank"></a>
 
     <div class="theme-switcher theme-switcher_theme-dark">
       <div class="theme-switcher__button"></div>
@@ -57,9 +47,7 @@
           <h1 class="profile__name">Жак-Ив Кусто</h1>
 
           <div class="profile__button profile__button_type_edit">
-            <svg class="icon icon_type_edit">
-              <path d="M10 1.32827L2.60377 8.7666L1.28302 7.41936L8.66038 0L10 1.32827ZM0 10L1.96226 9.41177L0.584906 8.08349L0 10Z"/>
-            </svg>
+            <div class="icon icon_type_edit"></div>
           </div>
         </div>
 
@@ -67,9 +55,7 @@
       </div>
 
       <div class="profile__button profile__button_type_add">
-        <svg class="icon icon_type_add">
-          <path d="M22 9.77778H12.2222V0H9.77778V9.77778H0V12.2222H9.77778V22H12.2222V12.2222H22V9.77778Z"/>
-        </svg>
+        <div class="icon icon_type_add"></div>
       </div>
 
     </section>
@@ -82,9 +68,7 @@
           </div>
           <div class="photo__description">
             <h2 class="photo__name">Карачаевск</h2>
-            <svg class="photo__like-button">
-              <use xlink:href="#likeIcon"></use>
-            </svg>
+            <div class="photo__like-button"></div>
           </div>
         </li>
 
@@ -94,9 +78,7 @@
           </div>
           <div class="photo__description">
             <h2 class="photo__name">Гора Эльбрус</h2>
-            <svg class="photo__like-button">
-              <use xlink:href="#likeIcon"></use>
-            </svg>
+            <div class="photo__like-button photo__like-button_active"></div>
           </div>
         </li>
 
@@ -106,9 +88,7 @@
           </div>
           <div class="photo__description">
             <h2 class="photo__name">Домбай</h2>
-            <svg class="photo__like-button">
-              <use xlink:href="#likeIcon"></use>
-            </svg>
+            <div class="photo__like-button"></div>
           </div>
         </li>
 
@@ -118,9 +98,7 @@
           </div>
           <div class="photo__description">
             <h2 class="photo__name">Гора Эльбрус</h2>
-            <svg class="photo__like-button">
-              <use xlink:href="#likeIcon"></use>
-            </svg>
+            <div class="photo__like-button"></div>
           </div>
         </li>
 
@@ -130,9 +108,7 @@
           </div>
           <div class="photo__description">
             <h2 class="photo__name">Домбай</h2>
-            <svg class="photo__like-button">
-              <use xlink:href="#likeIcon"></use>
-            </svg>
+            <div class="photo__like-button"></div>
           </div>
         </li>
 
@@ -142,9 +118,7 @@
           </div>
           <div class="photo__description">
             <h2 class="photo__name">Карачаево-Черкессия</h2>
-            <svg class="photo__like-button">
-              <use xlink:href="#likeIcon"></use>
-            </svg>
+            <div class="photo__like-button"></div>
           </div>
         </li>
       </ul>
@@ -159,9 +133,7 @@
 
   <div class="popup">
     <div class="popup__content">
-      <svg class="popup__close-button">
-        <path d="M40 17.8H22.2V0h-4.4v17.8H0v4.4h17.8V40h4.4V22.2H40v-4.4z"/>
-      </svg>
+      <div class="popup__close-button"></div>
 
       <h2 class="popup__title">Редактировать профиль</h2>
 

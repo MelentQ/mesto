@@ -1,6 +1,8 @@
 .icon_type_add {
   width: 22px;
   height: 22px;
+
+  background-image: url(../../../images/icons/cross.svg);
 }
 
 @media screen and (max-width: 413px) {

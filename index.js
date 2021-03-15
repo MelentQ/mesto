@@ -43,11 +43,29 @@ let page = document.querySelector('.page');
 let themeSwitcher = document.querySelector('.theme-switcher');
 let themeSwitcherBtn = document.querySelector('.theme-switcher__button');
 
+
+let headerLogo = document.querySelector('.header__logo');
+let editIcon = document.querySelector('.icon_type_edit');
+let addIcon = document.querySelector('.icon_type_add');
+let likeBtn = document.querySelectorAll('.photo__like-button');
+let likeBtnActive = document.querySelectorAll('.photo__like-button_active');
+
 function SwitchTheme() {
   page.classList.toggle('theme_color_dark')
   page.classList.toggle('theme_color_light')
   themeSwitcher.classList.toggle('theme-switcher_theme-dark')
   themeSwitcher.classList.toggle('theme-switcher_theme-light')
+
+
+  headerLogo.classList.toggle('header__logo_theme_light')
+  editIcon.classList.toggle('icon_type_edit-theme-light')
+  addIcon.classList.toggle('icon_type_add-theme-light')
+  for(let i=0; i< likeBtn.length; i++) {
+    likeBtn[i].classList.toggle('photo__like-button_theme_light')
+  }
+  for(let i=0; i< likeBtnActive.length; i++) {
+    likeBtnActive[i].classList.toggle('photo__like-button_active-theme-light')
+  }
 }
 
 themeSwitcher.addEventListener('click', SwitchTheme)
