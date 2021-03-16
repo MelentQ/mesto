@@ -19,9 +19,6 @@
 @import url(../blocks/profile/__button/_type/profile__button_type_add.css);
 @import url(../blocks/profile/__activity/profile__activity.css);
 
-@import url(../blocks/icon/_type/icon_type_edit.css);
-@import url(../blocks/icon/_type/icon_type_add.css);
-
 @import url(../blocks/photos/photos.css);
 @import url(../blocks/photos/__list/photos__list.css);
 

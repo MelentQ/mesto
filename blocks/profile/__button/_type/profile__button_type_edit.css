@@ -1,11 +1,18 @@
 .profile__button_type_edit {
   width: 24px;
   height: 24px;
+
+  background-image: url(../../../../images/icons/edit.svg);
+  background-size: 10px 10px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 413px) {
   .profile__button_type_edit {
     width: 18px;
     height: 18px;
+
+    background-size: 7.5px 7.5px;
   }
 }
