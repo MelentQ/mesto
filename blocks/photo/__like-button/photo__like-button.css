@@ -1,13 +1,20 @@
 .photo__like-button {
+  padding: 0;
   width: 22px;
   height: 19px;
 
+  border: none;
+  background: none;
   background-image: url(../../../images/icons/like.svg);
-  fill: var(--photo-coloron-bg);
   cursor: pointer;
   transition: opacity 0.15s ease-in;
 }
 
 .photo__like-button:hover {
+  opacity: 0.5;
+}
+
+.photo__like-button:focus {
+  outline: none;
   opacity: 0.5;
 }

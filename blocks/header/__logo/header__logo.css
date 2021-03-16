@@ -6,13 +6,16 @@
 
   background-image: url(../../../images/icons/logo.svg);
   background-repeat: no-repeat;
-  fill: var(--page-coloron-bg);
   transition: opacity 0.15s ease-in;
 }
 
 .header__logo:hover {
-  opacity: 0.6;
-  fill: var(--page-coloron-bg-low);
+  opacity: 0.7;
+}
+
+.header__logo:focus {
+  outline: none;
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 879px) {

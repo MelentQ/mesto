@@ -15,26 +15,10 @@
   <title>Mesto</title>
   <link rel="stylesheet" href="./pages/index.css">
 </head>
-<body class="page theme theme_color_dark">
-
-  <!-- 
-    Комментарий ревьюверу:
-    В работе реализовал переключение темной и светлой темы.
-    Сделано через добавление модификаторов, изменяющих url иконок.
-    Я правда не хотел так делать, все можно было реализовать через fill CSS,
-    но увы - автотесты не пропустили с инлайновыми SVG в HTML.
-    Удалять из-за этого весь функционал переключения темы не хотелось,
-    поэтому пришлось заниматься этой порнографией.
-    Из-за этого много лишних модификаторов
-    и в JS тоже значительно прибавилось кода.
-   -->
+<body class="page">
 
   <header class="header section section_place_header">
     <a href="#" class="header__logo" title="На главную" target="_blank"></a>
-
-    <div class="theme-switcher theme-switcher_theme-dark">
-      <div class="theme-switcher__button"></div>
-    </div>
   </header>
 
   <main class="content">
@@ -46,79 +30,79 @@
         <div class="profile__edit-container">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
 
-          <div class="profile__button profile__button_type_edit">
+          <button type="button" class="profile__button profile__button_type_edit">
+            <!--
+              Комментарий для ревьювера:
+              Не получилось сделать фоном кнопки:
+              иконка растягивается на всю ширину и высоту кнопки,
+              игнорируя внутренние отступы. Для кнопки Add аналогично.
+            -->
             <div class="icon icon_type_edit"></div>
-          </div>
+          </button>
         </div>
 
         <p class="profile__activity">Исследователь океана</p>
       </div>
 
-      <div class="profile__button profile__button_type_add">
+      <button type="button" class="profile__button profile__button_type_add">
         <div class="icon icon_type_add"></div>
-      </div>
+      </button>
 
     </section>
 
     <section class="photos section">
       <ul class="photos__list">
         <li class="photo">
-          <div class="photo__image-container">
-            <img src="./images/photos/photo-1.jpg" alt="Photo" class="photo__image">
-          </div>
+          <img src="./images/photos/photo-1.jpg" alt="Карачаевск" class="photo__image">
+
           <div class="photo__description">
             <h2 class="photo__name">Карачаевск</h2>
-            <div class="photo__like-button"></div>
+            <button type="button" class="photo__like-button"></button>
           </div>
         </li>
 
         <li class="photo">
-          <div class="photo__image-container">
-            <img src="./images/photos/photo-2.jpg" alt="Photo" class="photo__image">
-          </div>
+          <img src="./images/photos/photo-2.jpg" alt="Гора Эльбрус" class="photo__image">
+
           <div class="photo__description">
             <h2 class="photo__name">Гора Эльбрус</h2>
-            <div class="photo__like-button photo__like-button_active"></div>
+            <button type="button" class="photo__like-button photo__like-button_active"></button>
           </div>
         </li>
 
         <li class="photo">
-          <div class="photo__image-container">
-            <img src="./images/photos/photo-3.jpg" alt="Photo" class="photo__image">
-          </div>
+          <img src="./images/photos/photo-3.jpg" alt="Домбай" class="photo__image">
+
           <div class="photo__description">
             <h2 class="photo__name">Домбай</h2>
-            <div class="photo__like-button"></div>
+            <button type="button" class="photo__like-button"></button>
           </div>
         </li>
 
         <li class="photo">
-          <div class="photo__image-container">
-            <img src="./images/photos/photo-2.jpg" alt="Photo" class="photo__image">
-          </div>
+          <img src="./images/photos/photo-2.jpg" alt="Гора Эльбрус" class="photo__image">
+
           <div class="photo__description">
             <h2 class="photo__name">Гора Эльбрус</h2>
-            <div class="photo__like-button"></div>
+            <button type="button" class="photo__like-button"></button>
           </div>
         </li>
 
         <li class="photo">
-          <div class="photo__image-container">
-            <img src="./images/photos/photo-3.jpg" alt="Photo" class="photo__image">
-          </div>
+          <img src="./images/photos/photo-3.jpg" alt="Домбай" class="photo__image">
+
           <div class="photo__description">
             <h2 class="photo__name">Домбай</h2>
-            <div class="photo__like-button"></div>
+            <button type="button" class="photo__like-button"></button>
           </div>
         </li>
 
         <li class="photo">
-          <div class="photo__image-container">
-            <img src="./images/photos/photo-1.jpg" alt="Photo" class="photo__image">
-          </div>
+          <img src="./images/photos/photo-1.jpg" alt="Карачаево-Черкессия" class="photo__image">
+
           <div class="photo__description">
             <h2 class="photo__name">Карачаево-Черкессия</h2>
-            <div class="photo__like-button"></div>
+            <button type="button" class="photo__like-button"></button>
           </div>
         </li>
       </ul>
@@ -132,23 +116,23 @@
   </footer>
 
   <div class="popup">
-    <div class="popup__content">
-      <div class="popup__close-button"></div>
+    <div class="popup__container">
+      <button type="button" class="popup__close-button"></button>
 
       <h2 class="popup__title">Редактировать профиль</h2>
 
-      <div class="input">
-        <input type="text" placeholder="Ваше имя" value="Жак-Ив Кусто" class="input__text input__text_type_name">
+      <form class="input" name="editForm">
+        <input type="text" name="name" placeholder="Ваше имя" value="Жак-Ив Кусто" class="input__text input__text_type_name">
 
-        <input type="text" placeholder="Чем вы занимаетесь" value="Исследователь океана" class="input__text input__text_type_activity">
+        <input type="text" name="activity" placeholder="Чем вы занимаетесь" value="Исследователь океана" class="input__text input__text_type_activity">
 
-        <button class="input__submit-button">
+        <button type="submit" class="input__submit-button">
           Сохранить
         </button>
-      </div>
+      </form>
     </div>
   </div>
 
-  <script src="./index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

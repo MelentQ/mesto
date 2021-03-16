@@ -4,12 +4,19 @@
   align-items: center;
 
   box-sizing: border-box;
+  padding: 0;
 
-  border: 1px solid var(--page-coloron-bg);
+  background: none;
+  border: 1px solid var(--coloron-bg);
   cursor: pointer;
   transition: opacity 0.15s ease-in;
 }
 
 .profile__button:hover {
+  opacity: 0.6;
+}
+
+.profile__button:focus {
+  outline: none;
   opacity: 0.6;
 }

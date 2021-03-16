@@ -1,9 +1,13 @@
 .page {
-  background-color: var(--page-color-bg);
+  --color-bg: black;
+  --coloron-bg: white;
+  --coloron-bg-low: #545454;
+  
+  background-color: var(--color-bg);
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 400;
   font-size: 16px;
-  color: var(--page-coloron-bg);
+  color: var(--coloron-bg);
 
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
