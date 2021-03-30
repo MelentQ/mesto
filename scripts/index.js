@@ -116,6 +116,6 @@ addPopupForm.addEventListener('submit', (evt) => {
   const cardName = addPopupForm.querySelector('.input__text_type_name').value
   const cardLink = addPopupForm.querySelector('.input__text_type_link').value
   
-  cardsContainer.append(getCard(cardName, cardLink))
+  cardsContainer.prepend(getCard(cardName, cardLink))
   closePopup(addPopup)
 })
