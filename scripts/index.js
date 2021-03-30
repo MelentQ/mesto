@@ -109,7 +109,11 @@ function getCard(name, link) {
   return card
 }
 
-addPopupOpenBtn.addEventListener('click', () => openPopup(addPopup))
+addPopupOpenBtn.addEventListener('click', () => {
+  addPopupForm.querySelector('.input__text_type_name').value = ""
+  addPopupForm.querySelector('.input__text_type_link').value = ""
+  openPopup(addPopup)
+})
 addPopupCloseBtn.addEventListener('click', () => closePopup(addPopup))
 addPopupForm.addEventListener('submit', (evt) => {
   evt.preventDefault()
