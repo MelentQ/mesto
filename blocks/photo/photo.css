@@ -1,4 +1,6 @@
 .photo {
+  position: relative;
+  
   overflow: hidden;
   background-color: var(--coloron-bg);
   border-radius: 10px;

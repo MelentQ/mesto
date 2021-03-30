@@ -42,61 +42,8 @@
 
     <section class="photos section">
       <ul class="photos__list">
-        <li class="photo">
-          <img src="./images/photos/photo-1.jpg" alt="Карачаевск" class="photo__image">
 
-          <div class="photo__description">
-            <h2 class="photo__name">Карачаевск</h2>
-            <button type="button" class="photo__like-button"></button>
-          </div>
-        </li>
-
-        <li class="photo">
-          <img src="./images/photos/photo-2.jpg" alt="Гора Эльбрус" class="photo__image">
-
-          <div class="photo__description">
-            <h2 class="photo__name">Гора Эльбрус</h2>
-            <button type="button" class="photo__like-button photo__like-button_active"></button>
-          </div>
-        </li>
-
-        <li class="photo">
-          <img src="./images/photos/photo-3.jpg" alt="Домбай" class="photo__image">
-
-          <div class="photo__description">
-            <h2 class="photo__name">Домбай</h2>
-            <button type="button" class="photo__like-button"></button>
-          </div>
-        </li>
-
-        <li class="photo">
-          <img src="./images/photos/photo-2.jpg" alt="Гора Эльбрус" class="photo__image">
-
-          <div class="photo__description">
-            <h2 class="photo__name">Гора Эльбрус</h2>
-            <button type="button" class="photo__like-button"></button>
-          </div>
-        </li>
-
-        <li class="photo">
-          <img src="./images/photos/photo-3.jpg" alt="Домбай" class="photo__image">
-
-          <div class="photo__description">
-            <h2 class="photo__name">Домбай</h2>
-            <button type="button" class="photo__like-button"></button>
-          </div>
-        </li>
-
-        <li class="photo">
-          <img src="./images/photos/photo-1.jpg" alt="Карачаево-Черкессия" class="photo__image">
-
-          <div class="photo__description">
-            <h2 class="photo__name">Карачаево-Черкессия</h2>
-            <button type="button" class="photo__like-button"></button>
-          </div>
-        </li>
       </ul>
-
     </section>
 
   </main>
@@ -105,22 +52,60 @@
     <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+
+  <template id="cardTemplate">
+    <li class="photo">
+      <img class="photo__image">
+      <button type="button" class="photo__delete-button"></button>
+      <div class="photo__description">
+        <h2 class="photo__name"></h2>
+        <button type="button" class="photo__like-button"></button>
+      </div>
+    </li>
+  </template>
+
+  <div class="popup" id="editPopup">
     <div class="popup__container">
       <button type="button" class="popup__close-button"></button>
 
       <h2 class="popup__title">Редактировать профиль</h2>
 
       <form class="input" name="editForm">
-        <input type="text" name="name" placeholder="Ваше имя" value="Жак-Ив Кусто" class="input__text input__text_type_name">
+        <input type="text" name="name" placeholder="Ваше имя" class="input__text input__text_type_name">
 
-        <input type="text" name="activity" placeholder="Чем вы занимаетесь" value="Исследователь океана" class="input__text input__text_type_activity">
+        <input type="text" name="activity" placeholder="Чем вы занимаетесь" class="input__text input__text_type_activity">
 
         <button type="submit" class="input__submit-button">
           Сохранить
         </button>
       </form>
     </div>
+  </div>
+
+  <div class="popup" id="addPopup">
+    <div class="popup__container">
+      <button type="button" class="popup__close-button"></button>
+
+      <h2 class="popup__title">Новое место</h2>
+
+      <form class="input" name="editForm">
+        <input type="text" name="name" placeholder="Название" class="input__text input__text_type_name">
+
+        <input type="text" name="activity" placeholder="Ссылка на картинку" class="input__text input__text_type_link">
+
+        <button type="submit" class="input__submit-button">
+          Создать
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup" id="cardPopup">
+    <figure class="popup__image-container">
+      <button type="button" class="popup__close-button"></button>
+      <img class="popup__image">
+      <figcaption class="popup__image-name"></figcaption>
+    </figure>
   </div>
 
   <script src="./scripts/index.js"></script>
