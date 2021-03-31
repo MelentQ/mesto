@@ -1,56 +1,15 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]
-const cardTemplate = document.querySelector('#cardTemplate').content
-const cardsContainer = document.querySelector('.photos__list')
-// Adding initial cards
-initialCards.forEach((item) => {
-  cardsContainer.append(getCard(item.name, item.link))
+initialCards.forEach((card) => {
+  cardsContainer.append(getCard(card.name, card.link))
 })
 
-// Edit button
-const editPopup = document.querySelector('#editPopup')
-const editPopupOpenBtn = document.querySelector('.profile__button_type_edit')
-const editPopupCloseBtn = editPopup.querySelector('.popup__close-button')
-const editPopupForm = editPopup.querySelector('.input')
-
-const currentProfileName = document.querySelector('.profile__name')
-const currentProfileActivity = document.querySelector('.profile__activity')
-const newProfileName = editPopupForm.querySelector('.input__text_type_name')
-const newProfileActivity = editPopupForm.querySelector('.input__text_type_activity')
-
-function openPopup(object) {
-  object.classList.add('popup_opened')
+function openPopup(popup) {
+  popup.classList.add('popup_opened')
 }
 
-function closePopup(object) {
-  object.classList.remove('popup_opened')
+function closePopup(popup) {
+  popup.classList.remove('popup_opened')
 }
 
-// Saves changes from edit popup
 function saveChanges(evt) {
   evt.preventDefault()
   currentProfileName.textContent = newProfileName.value;
@@ -65,17 +24,6 @@ editPopupOpenBtn.addEventListener('click', () => {
 })
 editPopupCloseBtn.addEventListener('click', () => closePopup(editPopup))
 editPopupForm.addEventListener('submit', saveChanges)
-
-// Add button
-const addPopup = document.querySelector('#addPopup')
-const addPopupOpenBtn = document.querySelector('.profile__button_type_add')
-const addPopupCloseBtn = addPopup.querySelector('.popup__close-button')
-const addPopupForm = addPopup.querySelector('.input')
-
-const cardPopup = document.querySelector('#cardPopup')
-const cardPopupImage = cardPopup.querySelector('.popup__image')
-const cardPopupCaption = cardPopup.querySelector('.popup__image-name')
-const cardPopupCloseBtn = cardPopup.querySelector('.popup__close-button')
 
 function getCard(name, link) {
   const card = cardTemplate.querySelector('.photo').cloneNode(true)
@@ -101,25 +49,23 @@ function getCard(name, link) {
     cardPopupImage.alt = name
     cardPopupCaption.textContent = name
     cardPopupCloseBtn.addEventListener('click', (evt) => {
-      cardPopup.classList.remove('popup_opened')
+      closePopup(cardPopup)
     })
-    cardPopup.classList.add('popup_opened')
+    openPopup(cardPopup)
   })
 
   return card
 }
 
 addPopupOpenBtn.addEventListener('click', () => {
-  addPopupForm.querySelector('.input__text_type_name').value = ""
-  addPopupForm.querySelector('.input__text_type_link').value = ""
+  newCardName.value = ""
+  newCardLink.value = ""
   openPopup(addPopup)
 })
 addPopupCloseBtn.addEventListener('click', () => closePopup(addPopup))
 addPopupForm.addEventListener('submit', (evt) => {
   evt.preventDefault()
-  const cardName = addPopupForm.querySelector('.input__text_type_name').value
-  const cardLink = addPopupForm.querySelector('.input__text_type_link').value
   
-  cardsContainer.prepend(getCard(cardName, cardLink))
+  cardsContainer.prepend(getCard(newCardName.value, newCardLink.value))
   closePopup(addPopup)
 })
