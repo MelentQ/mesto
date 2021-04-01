@@ -48,14 +48,15 @@ function getCard(name, link) {
     cardPopupImage.src = link
     cardPopupImage.alt = name
     cardPopupCaption.textContent = name
-    cardPopupCloseBtn.addEventListener('click', (evt) => {
-      closePopup(cardPopup)
-    })
     openPopup(cardPopup)
   })
 
   return card
 }
+
+cardPopupCloseBtn.addEventListener('click', (evt) => {
+  closePopup(cardPopup)
+})
 
 addPopupOpenBtn.addEventListener('click', () => {
   newCardName.value = ""
