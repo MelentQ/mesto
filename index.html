@@ -70,10 +70,16 @@
 
       <h2 class="popup__title">Редактировать профиль</h2>
 
-      <form class="input" name="editForm">
-        <input type="text" name="name" placeholder="Ваше имя" class="input__text input__text_type_name">
+      <form class="input" name="editForm" novalidate>
+        <div class="input__field">
+          <input type="text" name="name" id="name-input" placeholder="Ваше имя" class="input__text input__text_type_name" required minlength="2" maxlength="40">
+          <span class="input__text-error" id="name-input-error"></span>
+        </div>
 
-        <input type="text" name="activity" placeholder="Чем вы занимаетесь" class="input__text input__text_type_activity">
+        <div class="input__field">
+          <input type="text" name="activity" id="activity-input" placeholder="Чем вы занимаетесь" class="input__text input__text_type_activity" required minlength="2" maxlength="200">
+          <span class="input__text-error" id="activity-input-error"></span>
+        </div>
 
         <button type="submit" class="input__submit-button">
           Сохранить
@@ -88,10 +94,16 @@
 
       <h2 class="popup__title">Новое место</h2>
 
-      <form class="input" name="editForm">
-        <input type="text" name="name" placeholder="Название" class="input__text input__text_type_name">
+      <form class="input" name="editForm" novalidate>
+        <div class="input__field">
+          <input type="text" name="description" id="description-input" placeholder="Название" class="input__text input__text_type_name" required minlength="2" maxlength="30">
+          <span class="input__text-error" id="description-input-error"></span>
+        </div>
 
-        <input type="text" name="activity" placeholder="Ссылка на картинку" class="input__text input__text_type_link">
+        <div class="input__field">
+          <input type="url" name="link" id="link-input" placeholder="Ссылка на картинку" class="input__text input__text_type_link" required>
+          <span class="input__text-error" id="link-input-error"></span>
+        </div>
 
         <button type="submit" class="input__submit-button">
           Создать
@@ -109,6 +121,7 @@
   </div>
 
   <script src="./scripts/constants.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

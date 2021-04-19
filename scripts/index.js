@@ -4,10 +4,14 @@ initialCards.forEach((card) => {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened')
+  document.addEventListener('keydown', closeByEsc)
+  document.addEventListener('click', closeByOverlayClick)
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened')
+  document.removeEventListener('keydown', closeByEsc)
+  document.removeEventListener('click', closeByOverlayClick)
 }
 
 function saveChanges(evt) {
@@ -59,8 +63,7 @@ cardPopupCloseBtn.addEventListener('click', (evt) => {
 })
 
 addPopupOpenBtn.addEventListener('click', () => {
-  newCardName.value = ""
-  newCardLink.value = ""
+  addPopupForm.reset()
   openPopup(addPopup)
 })
 addPopupCloseBtn.addEventListener('click', () => closePopup(addPopup))
@@ -70,3 +73,49 @@ addPopupForm.addEventListener('submit', (evt) => {
   cardsContainer.prepend(getCard(newCardName.value, newCardLink.value))
   closePopup(addPopup)
 })
+
+
+function closeByEsc(evt) {
+  if (evt.key == "Escape") {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup)
+  }
+}
+
+function closeByOverlayClick(evt) {
+  const openedPopup = document.querySelector('.popup_opened')
+  
+  //Клик по попапу закрывает его
+  openedPopup.addEventListener('click', evt => {
+    closePopup(openedPopup)
+  })
+
+  //Но отключим всплытие события, если кликнуть на сам попап
+
+  //Для двух попапов редактирования профиля
+  const popupEditProfile = openedPopup.querySelector('.popup__container');
+  //Если не null
+  if (popupEditProfile) {
+    popupEditProfile.addEventListener('click', evt => {
+      evt.stopImmediatePropagation()
+    })
+  }
+
+  //Для попапа с изображением
+  const popupPhoto = openedPopup.querySelector('.popup__image-container');
+  //Если не null
+  if (popupPhoto) {
+    popupPhoto.addEventListener('click', evt => {
+      evt.stopImmediatePropagation()
+    })
+  }
+}
+
+EnableValidation({
+  formSelector: '.input',
+  inputSelector: '.input__text',
+  submitButtonSelector: '.input__submit-button',
+  inactiveButtonClass: 'input__submit-button_disabled',
+  inputErrorClass: 'input__text_type_error',
+  errorClass: 'form__input-error_active'
+});

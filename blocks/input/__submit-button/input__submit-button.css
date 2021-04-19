@@ -1,5 +1,5 @@
 .input__submit-button {
-  margin-top: 48px;
+  margin-top: 18px;
   padding: 14px 0;
   
   background-color: black;
@@ -10,7 +10,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
-  transition: opacity 0.15s ease-in;
+  transition: opacity 0.15s, background 0.15s ease-in;
 }
 
 .input__submit-button:hover {
