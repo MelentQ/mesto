@@ -13,7 +13,6 @@ function hideInputError(formElement, inputElement, inputErrorClass, errorClass) 
 }
 
 /**
- * Private
  * Проверяет поле ввода inputElement на валидность.
  * Если поле невалидно, выводит ошибку.
  * @param {*} formElement - элемент формы, внутри которого поле ввода inputElement
@@ -29,17 +28,26 @@ function checkInputValidity(formElement, inputElement, inputErrorClass, errorCla
 }
 
 /**
+ * Возвращает true, если хотя бы одно из полей ввода массива inputList невалидно
+ * Иначе false
+ * @param {*} inputList - массив полей ввода для проверки
+ * @returns true / false
+ */
+function isInputListInvalid(inputList) {
+  return inputList.some(
+    inputElement => !inputElement.validity.valid
+  )
+}
+
+
+/**
  * Отключает кнопку buttonElement, если хотя бы одно поле ввода массива inputList невалидно,
  * иначе включает кнопку
  * @param {*} inputList - массив полей ввода для проверки
  * @param {*} buttonElement - кнопка отправки формы
  */
 function toggleButtonState(inputList, buttonElement, inactiveButtonClass) {
-  const hasNotValidInput = inputList.some(
-    (inputElement => !inputElement.validity.valid)
-  )
-
-  if (hasNotValidInput) {
+  if (isInputListInvalid(inputList)) {
     buttonElement.setAttribute('disabled', true)
     buttonElement.classList.add(inactiveButtonClass)
   }
@@ -74,7 +82,7 @@ function setEventListeners(formElement, inputSelector, submitButtonSelector, ina
 }
 
 /**
- * Включает валидацию всех форм с классом .form
+ * Включает валидацию всех форм с классом formSelector ...
  */
 function EnableValidation({
   formSelector,

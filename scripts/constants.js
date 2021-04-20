@@ -39,6 +39,7 @@ const newProfileActivity = editPopupForm.querySelector('.input__text_type_activi
 
 const addPopup = document.querySelector('#addPopup')
 const addPopupOpenBtn = document.querySelector('.profile__button_type_add')
+const addPopupSubmitBtn = addPopup.querySelector('.input__submit-button')
 const addPopupCloseBtn = addPopup.querySelector('.popup__close-button')
 const addPopupForm = addPopup.querySelector('.input')
 const newCardName = addPopupForm.querySelector('.input__text_type_name')

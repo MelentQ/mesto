@@ -64,6 +64,10 @@ cardPopupCloseBtn.addEventListener('click', (evt) => {
 
 addPopupOpenBtn.addEventListener('click', () => {
   addPopupForm.reset()
+  //Отключим кнопку добавления карточки при открытии попапа
+  //и добавим соответствующий класс
+  addPopupSubmitBtn.setAttribute('disabled', true)
+  addPopupSubmitBtn.classList.add('input__submit-button_disabled')
   openPopup(addPopup)
 })
 addPopupCloseBtn.addEventListener('click', () => closePopup(addPopup))
@@ -74,7 +78,6 @@ addPopupForm.addEventListener('submit', (evt) => {
   closePopup(addPopup)
 })
 
-
 function closeByEsc(evt) {
   if (evt.key == "Escape") {
     const openedPopup = document.querySelector('.popup_opened')
@@ -83,33 +86,10 @@ function closeByEsc(evt) {
 }
 
 function closeByOverlayClick(evt) {
-  const openedPopup = document.querySelector('.popup_opened')
-  
-  //Клик по попапу закрывает его
-  openedPopup.addEventListener('click', evt => {
-    closePopup(openedPopup)
-  })
-
-  //Но отключим всплытие события, если кликнуть на сам попап
-
-  //Для двух попапов редактирования профиля
-  const popupEditProfile = openedPopup.querySelector('.popup__container');
-  //Если не null
-  if (popupEditProfile) {
-    popupEditProfile.addEventListener('click', evt => {
-      evt.stopImmediatePropagation()
-    })
+  if(evt.target.classList.contains('popup_opened')) {
+    closePopup(evt.target);
   }
-
-  //Для попапа с изображением
-  const popupPhoto = openedPopup.querySelector('.popup__image-container');
-  //Если не null
-  if (popupPhoto) {
-    popupPhoto.addEventListener('click', evt => {
-      evt.stopImmediatePropagation()
-    })
-  }
-}
+} 
 
 EnableValidation({
   formSelector: '.input',
