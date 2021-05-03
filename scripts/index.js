@@ -1,18 +1,11 @@
+import {openPopup, closePopup} from './utils.js'
+import Card from './card.js'
+import FormValidator from './formValidator.js'
+
 initialCards.forEach((card) => {
-  cardsContainer.append(getCard(card.name, card.link))
+  const cardItem = new Card(card.name, card.link, '#cardTemplate')
+  cardsContainer.append(cardItem.generateCard())
 })
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened')
-  document.addEventListener('keydown', closeByEsc)
-  document.addEventListener('click', closeByOverlayClick)
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened')
-  document.removeEventListener('keydown', closeByEsc)
-  document.removeEventListener('click', closeByOverlayClick)
-}
 
 function saveChanges(evt) {
   evt.preventDefault()
@@ -29,39 +22,6 @@ editPopupOpenBtn.addEventListener('click', () => {
 editPopupCloseBtn.addEventListener('click', () => closePopup(editPopup))
 editPopupForm.addEventListener('submit', saveChanges)
 
-function getCard(name, link) {
-  const card = cardTemplate.querySelector('.photo').cloneNode(true)
-  const cardImage = card.querySelector('.photo__image')
-  const likeButton = card.querySelector('.photo__like-button')
-  const deleteButton = card.querySelector('.photo__delete-button')
-
-  cardImage.src = link
-  cardImage.alt = name
-  card.querySelector('.photo__name').textContent = name
-
-  likeButton.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('photo__like-button_active')
-    evt.target.blur() //Removes focus on element after click
-  })
-
-  deleteButton.addEventListener('click', (evt) => {
-    card.remove()
-  })
-
-  cardImage.addEventListener('click', (evt) => {
-    cardPopupImage.src = link
-    cardPopupImage.alt = name
-    cardPopupCaption.textContent = name
-    openPopup(cardPopup)
-  })
-
-  return card
-}
-
-cardPopupCloseBtn.addEventListener('click', (evt) => {
-  closePopup(cardPopup)
-})
-
 addPopupOpenBtn.addEventListener('click', () => {
   addPopupForm.reset()
   //Отключим кнопку добавления карточки при открытии попапа
@@ -74,28 +34,24 @@ addPopupCloseBtn.addEventListener('click', () => closePopup(addPopup))
 addPopupForm.addEventListener('submit', (evt) => {
   evt.preventDefault()
   
-  cardsContainer.prepend(getCard(newCardName.value, newCardLink.value))
+  const cardItem = new Card(newCardName.value, newCardLink.value, '#cardTemplate')
+  cardsContainer.prepend(cardItem.generateCard())
   closePopup(addPopup)
 })
 
-function closeByEsc(evt) {
-  if (evt.key == "Escape") {
-    const openedPopup = document.querySelector('.popup_opened')
-    closePopup(openedPopup)
-  }
-}
 
-function closeByOverlayClick(evt) {
-  if(evt.target.classList.contains('popup_opened')) {
-    closePopup(evt.target);
-  }
-} 
+// VALIDATION
+const formList = Array.from(document.querySelectorAll('.input'));
 
-EnableValidation({
-  formSelector: '.input',
-  inputSelector: '.input__text',
-  submitButtonSelector: '.input__submit-button',
-  inactiveButtonClass: 'input__submit-button_disabled',
-  inputErrorClass: 'input__text_type_error',
-  errorClass: 'form__input-error_active'
-});
+formList.forEach((formElement) => {
+  const formValidator = new FormValidator({
+    formSelector: '.input',
+    inputSelector: '.input__text',
+    submitButtonSelector: '.input__submit-button',
+    inactiveButtonClass: 'input__submit-button_disabled',
+    inputErrorClass: 'input__text_type_error',
+    errorClass: 'form__input-error_active'
+  }, formElement)
+
+  formValidator.enableValidation();
+})
