@@ -47,6 +47,13 @@ const newCardName = addPopupForm.querySelector('.input__text_type_name')
 const newCardLink = addPopupForm.querySelector('.input__text_type_link')
 
 const cardPopup = document.querySelector('#cardPopup')
-const cardPopupImage = cardPopup.querySelector('.popup__image')
-const cardPopupCaption = cardPopup.querySelector('.popup__image-name')
 const cardPopupCloseBtn = cardPopup.querySelector('.popup__close-button')
+
+const validationSelectors = {
+  formSelector: '.input',
+  inputSelector: '.input__text',
+  submitButtonSelector: '.input__submit-button',
+  inactiveButtonClass: 'input__submit-button_disabled',
+  inputErrorClass: 'input__text_type_error',
+  errorClass: 'form__input-error_active'
+}

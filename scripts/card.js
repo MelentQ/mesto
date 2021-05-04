@@ -20,7 +20,6 @@ export default class Card {
     this._deleteBtn = this._element.querySelector('.photo__delete-button');
 
     this._cardPopup = document.querySelector('#cardPopup');
-    this._cardPopupCloseBtn = this._cardPopup.querySelector('.popup__close-button')
   }
 
   _getTemplateBySelector(templateSelector) {
@@ -58,10 +57,6 @@ export default class Card {
     this._cardImage.addEventListener('click', () => {
       this._openImagePopup();
     })
-
-    this._cardPopupCloseBtn.addEventListener('click', () => {
-      closePopup(this._cardPopup)
-    })
   }
 
   _toggleLike() {
@@ -72,6 +67,7 @@ export default class Card {
 
   _deleteCard() {
     this._element.remove();
+    this._element = null;
   }
 
   _openImagePopup() {

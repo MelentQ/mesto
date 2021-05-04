@@ -30,25 +30,35 @@ export default class FormValidator {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
 
-    this._toggleButtonState();
+    this.toggleButtonState();
 
     this._inputList.forEach(inputElement => {
       inputElement.addEventListener('input', evt => {
-        this._checkInputValidity(inputElement);
-        this._toggleButtonState();
+        this.checkInputValidity(inputElement);
+        this.toggleButtonState();
       })
     })
   }
 
-  _toggleButtonState() {
+  /**
+   * Включает или отключает кнопку сабмита формы в зависимости от валидности формы
+   */
+  toggleButtonState() {
     if (this._isInputListInvalid(this._inputList)) {
-      this._buttonElement.setAttribute('disabled', true)
-      this._buttonElement.classList.add(this._inactiveButtonClass)
+      this.disableSubmitButton();
     }
     else {
-      this._buttonElement.removeAttribute('disabled')
-      this._buttonElement.classList.remove(this._inactiveButtonClass)
+      this._buttonElement.removeAttribute('disabled');
+      this._buttonElement.classList.remove(this._inactiveButtonClass);
     }
+  }
+
+  /**
+   * Отключает кнопку сабмита
+   */
+  disableSubmitButton() {
+    this._buttonElement.setAttribute('disabled', true);
+    this._buttonElement.classList.add(this._inactiveButtonClass);
   }
 
   _isInputListInvalid() {
@@ -57,9 +67,13 @@ export default class FormValidator {
     )
   }
 
-  _checkInputValidity(inputElement) {
+  /**
+   * Проверяет валидность поля inputElement
+   * @param {*} inputElement - поле ввода
+   */
+  checkInputValidity(inputElement) {
     if (inputElement.validity.valid) {
-      this._hideInputError(inputElement);
+      this.hideInputError(inputElement);
     }
     else {
       this._showInputError(inputElement, inputElement.validationMessage);
@@ -73,7 +87,11 @@ export default class FormValidator {
     inputElement.classList.add(this._inputErrorClass)
   }
   
-  _hideInputError(inputElement) {
+  /**
+   * Скрывает сообщение об ошибке валидации
+   * @param {*} inputElement - элемент ввода
+   */
+  hideInputError(inputElement) {
     this._errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     this._errorElement.textContent = "";
     this._errorElement.classList.remove(this._errorClass);
