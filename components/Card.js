@@ -1,25 +1,24 @@
-import {openPopup, closePopup} from './utils.js'
-
 export default class Card {
   /**
    * 
    * @param {*} name - Подпись изображения
    * @param {*} imageLink - Ссылка на изображение (URL)
    * @param {*} templateSelector - Селектор шаблона карточки
+   * @param {*} handleCardClick - колбэк функция при нажатии на карточку
    */
-  constructor(name, imageLink, templateSelector) {
-    this._name = name;
-    this._image = imageLink;
+  constructor(name, imageLink, templateSelector, handleCardClick, cardSelectors, cardLikeBtnActiveClass) {
+    this.name = name;
+    this.image = imageLink;
     this.isLiked = false;
 
-    this._templateSelector = templateSelector;
-
     this._element = this._getTemplateBySelector(templateSelector);
-    this._cardImage = this._element.querySelector('.photo__image');
-    this._likeBtn = this._element.querySelector('.photo__like-button');
-    this._deleteBtn = this._element.querySelector('.photo__delete-button');
+    this._cardImage = this._element.querySelector(cardSelectors.cardImageSelector);
+    this._cardName = this._element.querySelector(cardSelectors.cardNameSelector);
+    this._likeBtn = this._element.querySelector(cardSelectors.cardLikeBtnSelector);
+    this._deleteBtn = this._element.querySelector(cardSelectors.cardDeleteBtnSelector);
 
-    this._cardPopup = document.querySelector('#cardPopup');
+    this._handleCardClick = handleCardClick;
+    this._cardLikeBtnActiveClass = cardLikeBtnActiveClass;
   }
 
   _getTemplateBySelector(templateSelector) {
@@ -37,10 +36,10 @@ export default class Card {
   generateCard() {
     this._setEventListeners();
 
-    this._element.querySelector('.photo__image').src = this._image;
-    this._element.querySelector('.photo__image').alt = this._name;
+    this._cardImage.src = this.image;
+    this._cardImage.alt = this.name;
 
-    this._element.querySelector('.photo__name').textContent = this._name;
+    this._cardName.textContent = this.name;
 
     return this._element;
   }
@@ -55,28 +54,18 @@ export default class Card {
     })
 
     this._cardImage.addEventListener('click', () => {
-      this._openImagePopup();
+      this._handleCardClick();
     })
   }
 
   _toggleLike() {
     this.isLiked = !this.isLiked;
-    this._likeBtn.classList.toggle('photo__like-button_active');
+    this._likeBtn.classList.toggle(this._cardLikeBtnActiveClass);
     this._likeBtn.blur(); //Removes focus on element after click
   }
 
   _deleteCard() {
     this._element.remove();
     this._element = null;
-  }
-
-  _openImagePopup() {
-    const cardPopupImage = this._cardPopup.querySelector('.popup__image');
-    const cardPopupCaption = this._cardPopup.querySelector('.popup__image-name');
-
-    cardPopupImage.src = this._image;
-    cardPopupImage.alt = this._name;
-    cardPopupCaption.textContent = this._name;
-    openPopup(this._cardPopup);
   }
 }
