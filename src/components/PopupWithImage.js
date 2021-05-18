@@ -7,25 +7,23 @@ export default class PopupWithImage extends Popup {
    * @param {*} popupCloseBtnSelector - селектор кнопки закрытия
    * @param {*} openedPopupClass - CSS класс, который добавляется для открытия попапа
    * @param {*} popupPhotoSelector - селектор контейнера для изображения
-   * @param {*} popupPhotoURL - URL адрес изображения
    * @param {*} popupCaptionSelector - селектор контейнера для подписи к изображению
-   * @param {*} popupCaption - подпись изображения, строка
    */
-  constructor(popupSelector, popupCloseBtnSelector, openedPopupClass, popupPhotoSelector, popupPhotoURL, popupCaptionSelector, popupCaption) {
-    super(popupSelector, popupCloseBtnSelector, openedPopupClass);
+  constructor({popupSelector, popupCloseBtnSelector, openedPopupClass, popupPhotoSelector, popupCaptionSelector}) {
+    super({popupSelector, popupCloseBtnSelector, openedPopupClass});
     this._popupPhotoContainer = this._popup.querySelector(popupPhotoSelector);
-    this._popupPhotoURL = popupPhotoURL;
     this._popupCaptionContainer = this._popup.querySelector(popupCaptionSelector);
-    this._popupCaption = popupCaption;
   }
 
   /**
-   * Открывает модальное окно
+   * Открывает модальное окно c изображением и подписью
+   * @param {*} name - подпись к изображению
+   * @param {*} link - URL адрес изображения
    */
-  open() {
-    this._popupPhotoContainer.src = this._popupPhotoURL;
-    this._popupPhotoContainer.alt = this._popupCaption;
-    this._popupCaptionContainer.textContent = this._popupCaption;
+  open(name, link) {
+    this._popupPhotoContainer.src = link;
+    this._popupPhotoContainer.alt = name;
+    this._popupCaptionContainer.textContent = name;
 
     super.open();
   }

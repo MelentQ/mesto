@@ -14,7 +14,7 @@ export default class Section {
    * Отрисовывает все элементы items
    */
   renderItems() {
-    this.clear();
+    this._clear();
 
     this._renderedItems.forEach(item => {
       this._renderer(item);
@@ -32,7 +32,7 @@ export default class Section {
   /**
    * Очищает контейнер
    */
-  clear() {
+  _clear() {
     this._container.innerHTML = '';
   }
 }

@@ -10,8 +10,8 @@ export default class PopupWithForm extends Popup {
    * @param {*} formSelector селектор формы
    * @param {*} formInputSelector селектор полей ввода формы
    */
-  constructor(popupSelector, popupCloseBtnSelector, openedPopupClass, submitCallback, {formSelector, formInputSelector}) {
-    super(popupSelector, popupCloseBtnSelector, openedPopupClass);
+  constructor({popupSelector, popupCloseBtnSelector, openedPopupClass, formSelector, formInputSelector}, submitCallback) {
+    super({popupSelector, popupCloseBtnSelector, openedPopupClass});
     this._submitCallBack = submitCallback;
     this._form = this._popup.querySelector(formSelector);
     this._inputList = this._form.querySelectorAll(formInputSelector);

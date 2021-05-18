@@ -5,15 +5,13 @@ import {
   validationSelectors,
   nameAttribute,
   userInfoSelectors,
-  formSelectors,
-  popupSelectors,
-  openedPopupClass,
-  cardTemplateSelector,
   cardContainerSelector,
   editPopupOpenButtonSelector,
   addPopupOpenButtonSelector,
-  cardSelectors,
-  cardLikeBtnActiveClass
+  editPopupSelectors,
+  addPopupSelectors,
+  cardPopupSelectors,
+  cardSelectors
 } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -22,44 +20,32 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 
-// <<<<<<<<<<
+function createCard(name, link) {
+  const card = new Card(
+    cardSelectors,
+    name,
+    link,
+    handleCardClick
+  );
+
+  return card.generateCard();
+}
+
+// Создание попапа с изображением
+const popupWithImage = new PopupWithImage(cardPopupSelectors);
+popupWithImage.setEventListeners();
+
 // Колбэк функция открытия попапа с картинкой при клике на карточку
 function handleCardClick() {
-  const popupWithImage = new PopupWithImage(
-    popupSelectors.cardPopup,
-    popupSelectors.popupCloseBtn,
-    openedPopupClass,
-    popupSelectors.popupImage,
-    this.image, // это ок?
-    popupSelectors.popupImageCaption,
-    this.name
-  );
-  popupWithImage.setEventListeners();
-
-  popupWithImage.open();
+  popupWithImage.open(this.name, this.image);
 }
-// >>>>>>>>>>
 
-
-
-// <<<<<<<<<<
 // Колбэк функция отрисовки карточек "из коробки"
 function initialCardsRenderer(item) {
-  const card = new Card(
-    item.name,
-    item.link,
-    cardTemplateSelector,
-    handleCardClick,
-    cardSelectors,
-    cardLikeBtnActiveClass
-  );
-  this.addItem(card.generateCard());
+  const card = createCard(item.name, item.link)
+  this.addItem(card);
 }
-// >>>>>>>>>>
 
-
-
-// <<<<<<<<<<
 // Колбэк функция сабмита формы редактирования профиля
 function submitEditPopup(evt) {
   evt.preventDefault();
@@ -69,35 +55,18 @@ function submitEditPopup(evt) {
 
   this.close();
 }
-// >>>>>>>>>>
 
-
-
-// <<<<<<<<<<
 // Колбэк функция сабмита формы добавления карточки
 function submitAddPopup(evt) {
   evt.preventDefault();
 
-  // Создание карточки
-  const card = new Card(
-    addPopupForm[nameAttribute.cardName].value,
-    addPopupForm[nameAttribute.cardLink].value,
-    cardTemplateSelector,
-    handleCardClick,
-    cardSelectors,
-    cardLikeBtnActiveClass
-  );
-
+  const card = createCard(addPopupForm[nameAttribute.cardName].value, addPopupForm[nameAttribute.cardLink].value)
   // Добавление в секцию
-  cardList.addItem(card.generateCard());
+  cardList.addItem(card);
 
   this.close();
 }
-// >>>>>>>>>>
 
-
-
-// <<<<<<<<<<
 // Загрузка карточек из коробки
 const cardList = new Section(
   {
@@ -108,22 +77,12 @@ const cardList = new Section(
 );
 
 cardList.renderItems();
-// >>>>>>>>>>
 
-
-
-// <<<<<<<<<<
 // Информации о пользователе,
 // попап редактирования профиля
 const userInfo = new UserInfo(userInfoSelectors);
 
-const editPopup = new PopupWithForm(
-  popupSelectors.editPopup,
-  popupSelectors.popupCloseBtn,
-  openedPopupClass,
-  submitEditPopup,
-  formSelectors
-);
+const editPopup = new PopupWithForm(editPopupSelectors, submitEditPopup);
 editPopup.setEventListeners();
 
 // Включение валидации формы
@@ -139,45 +98,30 @@ editPopupOpenBtn.addEventListener('click', () => {
   const user = userInfo.getUserInfo();
   editPopupForm[nameAttribute.userName].value = user.name;
   editPopupForm[nameAttribute.userCaption].value = user.caption;
-  // Проверим валидность полей ввода
-  editPopupFormValidator.inputList.forEach(inputElement => {
-    editPopupFormValidator.checkInputValidity(inputElement);
-  });
-  // Включим или отключим кнопку сабмита
-  editPopupFormValidator.toggleButtonState();
+  // Сбросим ошибки с полей ввода
+  editPopupFormValidator.resetInputsError();
+  // Включим кнопку сабмита
+  editPopupFormValidator.enableSubmitButton();
 
   editPopup.open();
 })
-// >>>>>>>>>>
 
-
-
-// <<<<<<<<<<
 // Попап добавления карточки
 // Валидация формы
 const addPopupForm = document.forms[nameAttribute.addForm];
 const addPopupFormValidator = new FormValidator(validationSelectors, addPopupForm);
 addPopupFormValidator.enableValidation();
 
-const addPopup = new PopupWithForm(
-  popupSelectors.addPopup,
-  popupSelectors.popupCloseBtn,
-  openedPopupClass,
-  submitAddPopup,
-  formSelectors
-)
+const addPopup = new PopupWithForm(addPopupSelectors, submitAddPopup);
 addPopup.setEventListeners();
 
 // Открытие попапа на клик по кнопке
 const addPopupOpenBtn = document.querySelector(addPopupOpenButtonSelector);
 addPopupOpenBtn.addEventListener('click', () => {
   //Скроем сообщение об ошибке
-  addPopupFormValidator.inputList.forEach(inputElement => {
-    addPopupFormValidator.hideInputError(inputElement);
-  })
+  addPopupFormValidator.resetInputsError();
   //Отключим кнопку добавления карточки при открытии попапа
   addPopupFormValidator.disableSubmitButton();
 
   addPopup.open();
 })
-// >>>>>>>>>>

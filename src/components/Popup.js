@@ -5,16 +5,21 @@ export default class Popup {
    * @param {*} popupCloseBtnSelector - селектор кнопки закрытия
    * @param {*} openedPopupClass - CSS класс, который добавляется для открытия попапа
    */
-  constructor(popupSelector, popupCloseBtnSelector, openedPopupClass) {
+  constructor({popupSelector, popupCloseBtnSelector, openedPopupClass}) {
     this._popup = document.querySelector(popupSelector);
     this._popupCloseBtn = this._popup.querySelector(popupCloseBtnSelector);
     this._openedPopupClass = openedPopupClass;
+
+    // Танцы с бубном
+    this._bindedHandleEscClose = this._handleEscClose.bind(this);
+    this._bindedOverlayClickClose = this._handleOverlayClickClose.bind(this);
   }
 
   /**
    * Открывает модальное окно
    */
   open() {
+    this._setHandleListeners();
     this._popup.classList.add(this._openedPopupClass)
   }
 
@@ -22,6 +27,7 @@ export default class Popup {
    * Закрывает модальное окно
    */
   close() {
+    this._removeHandleListeners();
     this._popup.classList.remove(this._openedPopupClass);
   }
 
@@ -39,13 +45,16 @@ export default class Popup {
 
   setEventListeners() {
     this._popupCloseBtn.addEventListener('click', this.close.bind(this));
-    document.addEventListener('keydown', this._handleEscClose.bind(this));
-    document.addEventListener('click', this._handleOverlayClickClose.bind(this));
   }
 
-  removeEventListeners() {
-    this._popupCloseBtn.removeEventListener('click', this.close);
-    document.removeEventListener('keydown', this._handleEscClose);
-    document.removeEventListener('click', this._handleOverlayClickClose);
+  _setHandleListeners() {
+    document.addEventListener('keydown', this._bindedHandleEscClose);
+    document.addEventListener('click', this._bindedOverlayClickClose);
+  }
+  
+
+  _removeHandleListeners() {
+    document.removeEventListener('keydown', this._bindedHandleEscClose);
+    document.removeEventListener('click', this._bindedOverlayClickClose);
   }
 }

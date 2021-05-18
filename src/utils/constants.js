@@ -25,14 +25,6 @@ export const initialCards = [
   }
 ];
 
-export const cardSelectors = {
-  cardImageSelector: '.photo__image',
-  cardNameSelector: '.photo__name',
-  cardLikeBtnSelector: '.photo__like-button',
-  cardDeleteBtnSelector: '.photo__delete-button',
-};
-export const cardLikeBtnActiveClass = 'photo__like-button_active';
-
 export const validationSelectors = {
   formSelector: '.input',
   inputSelector: '.input__text',
@@ -57,23 +49,40 @@ export const userInfoSelectors = {
   userCaptionSelector: '.profile__activity'
 };
 
-export const formSelectors = {
-  formSelector: '.input',
-  formInputSelector: '.input__text'
-};
-
-export const popupSelectors = {
-  editPopup: '#editPopup',
-  addPopup: '#addPopup',
-  cardPopup: '#cardPopup',
-  popupCloseBtn: '.popup__close-button',
-  popupImage: '.popup__image',
-  popupImageCaption: '.popup__image-name'
-};
-
-export const openedPopupClass = 'popup_opened';
-export const cardTemplateSelector = '#cardTemplate';
 export const cardContainerSelector = '.photos__list';
 
 export const editPopupOpenButtonSelector = '.profile__button_type_edit';
 export const addPopupOpenButtonSelector = '.profile__button_type_add';
+
+export const editPopupSelectors = {
+  popupSelector: '#editPopup',
+  popupCloseBtnSelector: '.popup__close-button',
+  openedPopupClass: 'popup_opened',
+  formSelector: '.input',
+  formInputSelector: '.input__text'
+}
+
+export const addPopupSelectors = {
+  popupSelector: '#addPopup',
+  popupCloseBtnSelector: '.popup__close-button',
+  openedPopupClass: 'popup_opened',
+  formSelector: '.input',
+  formInputSelector: '.input__text'
+}
+
+export const cardPopupSelectors = {
+  popupSelector: '#cardPopup',
+  popupCloseBtnSelector: '.popup__close-button',
+  openedPopupClass: 'popup_opened',
+  popupPhotoSelector: '.popup__image',
+  popupCaptionSelector: '.popup__image-name'
+}
+
+export const cardSelectors = {
+  templateSelector: '#cardTemplate',
+  cardImageSelector: '.photo__image',
+  cardNameSelector: '.photo__name',
+  cardLikeBtnSelector: '.photo__like-button',
+  cardDeleteBtnSelector: '.photo__delete-button',
+  cardLikeBtnActiveClass: 'photo__like-button_active'
+}

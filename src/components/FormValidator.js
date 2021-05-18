@@ -32,12 +32,12 @@ export default class FormValidator {
 
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
 
-    this.toggleButtonState();
+    this._toggleButtonState();
 
     this.inputList.forEach(inputElement => {
       inputElement.addEventListener('input', evt => {
-        this.checkInputValidity(inputElement);
-        this.toggleButtonState();
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState();
       })
     })
   }
@@ -45,13 +45,12 @@ export default class FormValidator {
   /**
    * Включает или отключает кнопку сабмита формы в зависимости от валидности формы
    */
-  toggleButtonState() {
+  _toggleButtonState() {
     if (this._isInputListInvalid(this.inputList)) {
       this.disableSubmitButton();
     }
     else {
-      this._buttonElement.removeAttribute('disabled');
-      this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this.enableSubmitButton();
     }
   }
 
@@ -61,6 +60,14 @@ export default class FormValidator {
   disableSubmitButton() {
     this._buttonElement.setAttribute('disabled', true);
     this._buttonElement.classList.add(this._inactiveButtonClass);
+  }
+
+  /**
+   * Включает кнопку сабмита
+   */
+  enableSubmitButton() {
+    this._buttonElement.removeAttribute('disabled');
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
   }
 
   _isInputListInvalid() {
@@ -73,9 +80,9 @@ export default class FormValidator {
    * Проверяет валидность поля inputElement
    * @param {*} inputElement - поле ввода
    */
-  checkInputValidity(inputElement) {
+  _checkInputValidity(inputElement) {
     if (inputElement.validity.valid) {
-      this.hideInputError(inputElement);
+      this._hideInputError(inputElement);
     }
     else {
       this._showInputError(inputElement, inputElement.validationMessage);
@@ -93,10 +100,19 @@ export default class FormValidator {
    * Скрывает сообщение об ошибке валидации
    * @param {*} inputElement - элемент ввода
    */
-  hideInputError(inputElement) {
+  _hideInputError(inputElement) {
     this._errorElement = this._formElement.querySelector(`#${inputElement.id}${this._errorElementPostfix}`);
     this._errorElement.textContent = "";
     this._errorElement.classList.remove(this._errorClass);
     inputElement.classList.remove(this._inputErrorClass)
+  }
+
+  /**
+   * Сбрасывает ошибки полей ввода (только визуально)
+   */
+  resetInputsError() {
+    this.inputList.forEach(inputElement => {
+      this._hideInputError(inputElement);
+    })
   }
 }

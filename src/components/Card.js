@@ -1,21 +1,21 @@
 export default class Card {
   /**
-   * 
-   * @param {*} name - Подпись изображения
-   * @param {*} imageLink - Ссылка на изображение (URL)
-   * @param {*} templateSelector - Селектор шаблона карточки
+   * Класс Card соответствует карточке с изображением и подписью, кнопками лайка и удаления.
+   * @param {*} cardSelectors - объект, содержащий необходимые селекторы
+   * @param {*} name - подпись изображения
+   * @param {*} imageLink - ссылка на изображение (URL)
    * @param {*} handleCardClick - колбэк функция при нажатии на карточку
    */
-  constructor(name, imageLink, templateSelector, handleCardClick, cardSelectors, cardLikeBtnActiveClass) {
+  constructor({templateSelector, cardImageSelector, cardNameSelector, cardLikeBtnSelector, cardDeleteBtnSelector, cardLikeBtnActiveClass}, name, imageLink, handleCardClick) {
     this.name = name;
     this.image = imageLink;
     this.isLiked = false;
 
     this._element = this._getTemplateBySelector(templateSelector);
-    this._cardImage = this._element.querySelector(cardSelectors.cardImageSelector);
-    this._cardName = this._element.querySelector(cardSelectors.cardNameSelector);
-    this._likeBtn = this._element.querySelector(cardSelectors.cardLikeBtnSelector);
-    this._deleteBtn = this._element.querySelector(cardSelectors.cardDeleteBtnSelector);
+    this._cardImage = this._element.querySelector(cardImageSelector);
+    this._cardName = this._element.querySelector(cardNameSelector);
+    this._likeBtn = this._element.querySelector(cardLikeBtnSelector);
+    this._deleteBtn = this._element.querySelector(cardDeleteBtnSelector);
 
     this._handleCardClick = handleCardClick;
     this._cardLikeBtnActiveClass = cardLikeBtnActiveClass;
