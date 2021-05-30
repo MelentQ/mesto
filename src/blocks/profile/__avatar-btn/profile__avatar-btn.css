@@ -1,0 +1,35 @@
+.profile__avatar-btn {
+  position: relative;
+
+  margin: 0;
+  padding: 0;
+  width: 120px;
+  height: 120px;
+
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* Это по БЭМ? */
+.profile__avatar-btn:hover .profile__avatar-btn-icon {
+  opacity: 1;
+}
+
+.profile__avatar-btn:hover .profile__avatar {
+  opacity: 0.2;
+}
+
+.profile__avatar-btn:focus {
+  outline: none;
+}
+
+.profile__avatar-btn:focus .profile__avatar-btn-icon {
+  opacity: 1;
+}
+
+.profile__avatar-btn:focus .profile__avatar {
+  opacity: 0.2;
+}

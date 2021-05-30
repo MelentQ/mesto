@@ -10,11 +10,13 @@ export default class PopupWithForm extends Popup {
    * @param {*} formSelector селектор формы
    * @param {*} formInputSelector селектор полей ввода формы
    */
-  constructor({popupSelector, popupCloseBtnSelector, openedPopupClass, formSelector, formInputSelector}, submitCallback) {
+  constructor({popupSelector, popupCloseBtnSelector, openedPopupClass, formSelector, formInputSelector, submitButtonSelector}, submitCallback) {
     super({popupSelector, popupCloseBtnSelector, openedPopupClass});
     this._submitCallBack = submitCallback;
     this._form = this._popup.querySelector(formSelector);
     this._inputList = this._form.querySelectorAll(formInputSelector);
+    this._submitButton = this._form.querySelector(submitButtonSelector);
+    this._initialSubmitButtonText = this._submitButton.textContent;
   }
 
   /**
@@ -42,5 +44,21 @@ export default class PopupWithForm extends Popup {
     super.close();
 
     this._form.reset();
+  }
+
+  /**
+   * Режим ожидания ответа от сервера. Отключает кнопку сабмита и изменяет ее текущий текст на submitButtonText
+   * @param {*} handler - переключатель, булево значение. true - включает режим. false - отключает режим.
+   * @param {*} submitButtonText - альтернативный текст кнопки во время ожидания. По умолчанию текст не меняется.
+   */
+   waitingMode(handler, submitButtonText = this._initialSubmitButtonText) {
+    if (handler) {
+      this._submitButton.setAttribute('disabled', true);
+      this._submitButton.textContent = submitButtonText;
+    }
+    else {
+      this._submitButton.removeAttribute('disabled');
+      this._submitButton.textContent = this._initialSubmitButtonText;
+    }
   }
 }

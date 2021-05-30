@@ -19,7 +19,7 @@ export default class Popup {
    * Открывает модальное окно
    */
   open() {
-    this._setHandleListeners();
+    this._setEscAndOverlayEventListeners();
     this._popup.classList.add(this._openedPopupClass)
   }
 
@@ -27,7 +27,7 @@ export default class Popup {
    * Закрывает модальное окно
    */
   close() {
-    this._removeHandleListeners();
+    this._removeEscAndOverlayEventListeners();
     this._popup.classList.remove(this._openedPopupClass);
   }
 
@@ -47,13 +47,13 @@ export default class Popup {
     this._popupCloseBtn.addEventListener('click', this.close.bind(this));
   }
 
-  _setHandleListeners() {
+  _setEscAndOverlayEventListeners() {
     document.addEventListener('keydown', this._bindedHandleEscClose);
     document.addEventListener('click', this._bindedOverlayClickClose);
   }
   
 
-  _removeHandleListeners() {
+  _removeEscAndOverlayEventListeners() {
     document.removeEventListener('keydown', this._bindedHandleEscClose);
     document.removeEventListener('click', this._bindedOverlayClickClose);
   }

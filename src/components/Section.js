@@ -25,9 +25,14 @@ export default class Section {
    * Добавляет DOM-элемент item в контейнер
    * @param {*} item - DOM-элемент
    */
-  addItem(item) {
+  prependItem(item) {
     this._container.prepend(item);
   }
+
+  appendItem(item) {
+    this._container.append(item);
+  }
+  
 
   /**
    * Очищает контейнер

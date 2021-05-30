@@ -5,12 +5,15 @@ export default class UserInfo {
    * @param {*} userNameSelector - селектор элемента с именем пользователя
    * @param {*} userCaptionSelector - селектор элемента с подписью пользователя
    */
-  constructor({userInfoContainerSelector, userNameSelector, userCaptionSelector}) {
+  constructor({userInfoContainerSelector, userNameSelector, userCaptionSelector, userAvatarSelector}) {
     this._userInfoContainer = document.querySelector(userInfoContainerSelector);
     this._userNameElement = this._userInfoContainer.querySelector(userNameSelector);
     this._userName = this._userNameElement.textContent;
     this._userCaptionElement = this._userInfoContainer.querySelector(userCaptionSelector);
     this._userCaption = this._userCaptionElement.textContent;
+    this._userAvatarElement = this._userInfoContainer.querySelector(userAvatarSelector);
+    this._userAvatar = this._userAvatarElement.src;
+    this._userId = null;
   }
 
   /**
@@ -20,7 +23,9 @@ export default class UserInfo {
   getUserInfo() {
     return {
       name: this._userName,
-      caption: this._userCaption
+      caption: this._userCaption,
+      avatar: this._userAvatar,
+      id: this._userId
     }
   }
 
@@ -35,5 +40,22 @@ export default class UserInfo {
 
     this._userNameElement.textContent = this._userName;
     this._userCaptionElement.textContent = this._userCaption;
+  }
+
+  /**
+   * Обновляет аватар пользователя на странице
+   * @param {*} avatar 
+   */
+  setUserAvatar(avatar) {
+    this._userAvatar = avatar;
+    this._userAvatarElement.src = this._userAvatar;
+  }
+
+  /**
+   * 
+   * @param {*} userId - идентификатор пользователя
+   */
+  setUserId(userId) {
+    this._userId = userId;
   }
 }

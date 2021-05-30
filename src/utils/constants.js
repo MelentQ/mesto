@@ -1,29 +1,5 @@
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+export const apiAddress = 'https://mesto.nomoreparties.co/v1/cohort-24';
+export const apiToken = '68a2e8bf-41f6-4309-86d1-09aae1dd8e56';
 
 export const validationSelectors = {
   formSelector: '.input',
@@ -40,26 +16,30 @@ export const nameAttribute = {
   userCaption: 'activity',
   addForm: 'addForm',
   cardName: 'description',
-  cardLink: 'link'
-};
+  cardLink: 'link',
+  avatarForm: 'avatarForm',
+  avatarLink: 'link'};
 
 export const userInfoSelectors = {
-  userInfoContainerSelector: '.profile__info',
+  userInfoContainerSelector: '.profile',
   userNameSelector: '.profile__name',
-  userCaptionSelector: '.profile__activity'
+  userCaptionSelector: '.profile__activity',
+  userAvatarSelector: '.profile__avatar'
 };
 
 export const cardContainerSelector = '.photos__list';
 
 export const editPopupOpenButtonSelector = '.profile__button_type_edit';
 export const addPopupOpenButtonSelector = '.profile__button_type_add';
+export const editAvatarButtonSelector = '.profile__avatar-btn';
 
 export const editPopupSelectors = {
   popupSelector: '#editPopup',
   popupCloseBtnSelector: '.popup__close-button',
   openedPopupClass: 'popup_opened',
   formSelector: '.input',
-  formInputSelector: '.input__text'
+  formInputSelector: '.input__text',
+  submitButtonSelector: '.input__submit-button'
 }
 
 export const addPopupSelectors = {
@@ -67,7 +47,8 @@ export const addPopupSelectors = {
   popupCloseBtnSelector: '.popup__close-button',
   openedPopupClass: 'popup_opened',
   formSelector: '.input',
-  formInputSelector: '.input__text'
+  formInputSelector: '.input__text',
+  submitButtonSelector: '.input__submit-button'
 }
 
 export const cardPopupSelectors = {
@@ -78,11 +59,29 @@ export const cardPopupSelectors = {
   popupCaptionSelector: '.popup__image-name'
 }
 
+export const deleteCardPopupSelectors = {
+  popupSelector: '#deletePopup',
+  popupCloseBtnSelector: '.popup__close-button',
+  openedPopupClass: 'popup_opened',
+  formSelector: '.input',
+  submitButtonSelector: '.input__submit-button'
+}
+
+export const editAvatarPopupSelectors = {
+  popupSelector: '#avatarPopup',
+  popupCloseBtnSelector: '.popup__close-button',
+  openedPopupClass: 'popup_opened',
+  formSelector: '.input',
+  formInputSelector: '.input__text',
+  submitButtonSelector: '.input__submit-button'
+}
+
 export const cardSelectors = {
   templateSelector: '#cardTemplate',
   cardImageSelector: '.photo__image',
   cardNameSelector: '.photo__name',
   cardLikeBtnSelector: '.photo__like-button',
   cardDeleteBtnSelector: '.photo__delete-button',
+  likeCountSelector: '.photo__like-count',
   cardLikeBtnActiveClass: 'photo__like-button_active'
 }
