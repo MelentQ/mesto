@@ -37,24 +37,9 @@ import Api from '../components/Api';
     data,
     handleCardClick,
     handleLikeClick,
-    handleDeleteClick
+    handleDeleteClick,
+    userInfo.getUserInfo().id
   );
-
-  // Скрываем/показываем кнопку удаления карточки
-  if (card.ownerId != userInfo.getUserInfo().id) {
-    card.hideDeleteCardBtn();
-  }
-
-  // Переключаем кнопку лайка
-  // Проверяем всех пользователей, лайкнувших эту карточку.
-  // Если среди них есть я, то переключаем кнопку лайка.
-  data.likes.some(userData => {
-    if (userData._id === userInfo.getUserInfo().id) {
-      card.toggleLike();
-      // Выходим из цикла
-      return true;
-    }
-  })
 
   return card.generateCard();
 }
@@ -65,11 +50,13 @@ function submitAvatarPopup() {
 
   editAvatarPopup.waitingMode(true, 'Сохранение...');
   api.setUserAvatar(link)
-    .then(userData => userInfo.setUserAvatar(userData.avatar))
+    .then(userData => {
+      userInfo.setUserAvatar(userData.avatar);
+
+      this.close();
+    })
     .catch(err => console.log(`Ошибка при обновлении аватара: ${err.status}`))
     .finally(() => editAvatarPopup.waitingMode(false))
-  
-  this.close();
 }
 
 // Колбэк функция открытия попапа с картинкой при клике на карточку
@@ -96,11 +83,11 @@ function submitEditPopup(evt) {
     .then(res => {
       // Отобразим изменения на сервере
       userInfo.setUserInfo(res.name, res.about);
+
+      this.close();
     })
     .catch(err => console.log(`Ошибка при обновлении данных о пользователе: ${err.status}`))
     .finally(() => editPopup.waitingMode(false))
-
-  this.close();
 }
 
 // Колбэк функция сабмита формы добавления карточки
@@ -114,11 +101,11 @@ function submitAddPopup(evt) {
       const card = createCard(cardData);
       // Добавление в секцию
       cardList.prependItem(card);
+
+      this.close();
     })
     .catch(err => console.log(`Ошибка при создании новой карточки: ${err.status}`))
     .finally(() => addPopup.waitingMode(false))
-  
-  this.close();
 }
 
 // Колбэк функция нажатия по кнопке лайка
@@ -148,19 +135,24 @@ function handleDeleteClick() {
   deleteCardPopup.setSubmitAction((evt) => {
     // Удаляем карточку, по которой кликнули
     // Она хранится в this
-    api.deleteCard(this.id);
-    
-    // Теперь удаляем на клиенте
-    this.deleteCard();
+    deleteCardPopup.waitingMode(true, 'Удаление...');
+    api.deleteCard(this.id)
+      .then(() => {
+        // Теперь удаляем на клиенте
+        this.deleteCard();
 
-    // Закрываем попап
-    deleteCardPopup.close();
+        // Закрываем попап
+        deleteCardPopup.close();
+      })
+      .catch(err => console.log(`Ошибка при попытке удалить карточку: ${err.status}`))
+      .finally(() => deleteCardPopup.waitingMode(false))
   })
   deleteCardPopup.open();
 }
 
 // API
-const api = new Api(apiAddress, apiToken);
+const handleResponse = (res) => res.ok ? res.json() : Promise.reject(res.status);
+const api = new Api(apiAddress, apiToken, handleResponse);
 
 // Экземпляр класса для управления данными пользователя
 const userInfo = new UserInfo(userInfoSelectors);

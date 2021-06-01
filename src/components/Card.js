@@ -6,13 +6,16 @@ export default class Card {
    * @param {*} imageLink - ссылка на изображение (URL)
    * @param {*} handleCardClick - колбэк функция при нажатии на карточку
    */
-  constructor({templateSelector, cardImageSelector, cardNameSelector, cardLikeBtnSelector, cardDeleteBtnSelector, likeCountSelector, cardLikeBtnActiveClass}, {name, link, likes, owner, _id}, handleCardClick, handleLikeClick, handleDeleteClick) {
+  constructor({templateSelector, cardImageSelector, cardNameSelector, cardLikeBtnSelector, cardDeleteBtnSelector, likeCountSelector, cardLikeBtnActiveClass}, {name, link, likes, owner, _id}, handleCardClick, handleLikeClick, handleDeleteClick, currentUserId) {
     this.name = name;
     this.image = link;
     this.isLiked = false;
+    this._likes = likes;
     this.likesCount = likes.length;
     this.ownerId = owner._id;
     this.id = _id;
+
+    this._currentUserId = currentUserId;
 
     this._element = this._getTemplateBySelector(templateSelector);
     this._cardImage = this._element.querySelector(cardImageSelector);
@@ -46,7 +49,23 @@ export default class Card {
     this._cardImage.alt = this.name;
 
     this._cardName.textContent = this.name;
-    this.updateLikesCount()
+    this.updateLikesCount();
+
+    // Скрываем/показываем кнопку удаления карточки
+    if (this.ownerId != this._currentUserId) {
+      this._hideDeleteCardBtn();
+    }
+
+    // Переключаем кнопку лайка
+    // Проверяем всех пользователей, лайкнувших эту карточку.
+    // Если среди них есть я, то переключаем кнопку лайка.
+    this._likes.some(userData => {
+      if (userData._id === this._currentUserId) {
+        this.toggleLike();
+        // Выходим из цикла
+        return true;
+      }
+    })
 
     return this._element;
   }
@@ -86,7 +105,7 @@ export default class Card {
   /**
    * Скрывает кнопку удаления карточки
    */
-  hideDeleteCardBtn() {
+  _hideDeleteCardBtn() {
     this._deleteBtn.classList.add('photo__delete-button_hiden');
   }
 

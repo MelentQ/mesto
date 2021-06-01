@@ -3,10 +3,12 @@ export default class Api {
    * Класс для работы с API Mesto
    * @param {*} address базовый адрес, например https://mesto.nomoreparties.co/v1/cohort-24
    * @param {*} token токен, например 68a2e8bf-41f6-4309-86d1-09aae1dd8e56
+   * @param {*} handleResponse колбэк функция, которая обрабатывает ответ промиса
    */
-  constructor(address, token) {
+  constructor(address, token, handleResponse) {
     this._address = address;
     this._token = token;
+    this._handleResponse = handleResponse;
   }
 
   /**
@@ -20,7 +22,7 @@ export default class Api {
         authorization: this._token
       }
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._handleResponse)
   }
 
   /**
@@ -34,7 +36,7 @@ export default class Api {
         authorization: this._token
       }
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._handleResponse)
   }
 
   /**
@@ -55,7 +57,7 @@ export default class Api {
         about: about
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._handleResponse)
   }
 
   /**
@@ -74,7 +76,7 @@ export default class Api {
         avatar: link
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._handleResponse)
   }
 
   /**
@@ -95,7 +97,7 @@ export default class Api {
         link: link
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._handleResponse)
   }
 
   /**
@@ -110,7 +112,7 @@ export default class Api {
         authorization: this._token
       }
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._handleResponse)
   }
 
   /**
@@ -125,7 +127,7 @@ export default class Api {
         authorization: this._token
       }
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._handleResponse)
   }
 
   /**
@@ -139,6 +141,6 @@ export default class Api {
         authorization: this._token
       }
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._handleResponse)
   }
 }
