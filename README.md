@@ -1,9 +1,45 @@
-# Проект 4: Место
+# Проект Mesto (Яндекс.Практикум)
 
-### Обзор
+## About
 
+Учебный проект Mesto - "Инстаграм" на минималках.  
+Функционал:
+* Работата с данными пользователя (аватар, имя, подпись);
+* Добавление и удаление карточки с фотографией;
+* Лайк карточки;
+* Валидация форм;
+* Работа с готовым API Mesto.
+
+Каждый этап разработки, начиная с вёрстки и заканчивая рефакторингом кода в ООП и в синтаксис ES6, проходил код-ревью (1-3 итерации).
 Сделано по БЭМ на чистом HTML, CSS, JS.
 
-* [Ссылка на GH Pages](https://melentq.github.io/mesto)
+## Tech Stack
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+* HTML
+* CSS
+* JS - ES6
+* Webpack
+* Git
+
+* [BEM](https://ru.bem.info/)
+* responsive design
+* accessibility (semantic html)
+* cross-browser
+
+## Libs
+
+* [Normalize.css](https://necolas.github.io/normalize.css/)
+
+## Get Started
+
+### Developer mode
+
+`npm run dev`
+
+### Build mode
+
+`npm run build`
+
+## Links
+
+[GH Pages](https://melentq.github.io/mesto)
