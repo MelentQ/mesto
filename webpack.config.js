@@ -12,8 +12,7 @@ module.exports = {
   },
   mode: 'development',
   devServer: {
-    contentBase: path.resolve(__dirname, './dist'), // путь, куда "смотрит" режим разработчика
-    compress: true, // это ускорит загрузку в режиме разработки
+    compress: true,
     port: 8080,
     open: true
   },
